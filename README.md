@@ -4,7 +4,7 @@ A Texas Holdem game server that currently runs as a simulation. In the future th
 
 ## Motivation
 
-This project was developed with the sole intention for me to learn Node JS.
+This project was developed with the sole intention for me to learn Node JS while I took a 12 hour sea-voyage with limited internet connectivity!
 
 
 ## Installation
