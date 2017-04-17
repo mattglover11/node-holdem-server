@@ -5,7 +5,7 @@ var uuid = require('node-uuid');
 var Shuffle = require('shuffle');
 var srand = require('srand'); //https://github.com/isaacs/node-srand (npm install srand)
 srand.seed(Date.now());
-var gameTable = require("./table.js");
+var gameTableClass = require("./table.js");
 var holdem = require("./holdem.js");
 var player = require("./player.js");
 
@@ -37,7 +37,7 @@ function init() {
     // the game is made up of a table, which needs an instance of a game to be assigned to it, players,
     // and as many decks of cards required by the game being assigned to it
     var cardDeck = Shuffle.shuffle({random: function(){ return srand.random(); }});
-    var gameTable = new gameTable(uuid.v4(), 'Holdem #1', cardDeck); // a table needs a unique ID (for session purposes), a name and a deck of cards
+    var gameTable = new gameTableClass(uuid.v4(), 'Holdem #1', cardDeck); // a table needs a unique ID (for session purposes), a name and a deck of cards
     var holdemGame = new holdem(gameTable); // create and instance of a game and give it a reference to the table to which it is being assigned
     var playerCount = randomIntFromInterval(2,(namePool.length-1)-0); // simulate 2 to x players
 
