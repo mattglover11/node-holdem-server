@@ -1,4 +1,4 @@
-#node-holdem-server
+# node-holdem-server
 
 A Texas Holdem game server that currently runs as a simulation. In the future this may evolve to either focus on multiplayer RTC, similulation only or as the basis for machine learning experimentation.
 
