@@ -34,13 +34,15 @@ var namePool = [
 
 function init() {
 
+    // the game is made up of a table, which needs an instance of a game to be assigned to it, players,
+    // and as many decks of cards required by the game being assigned to it
     var cardDeck = Shuffle.shuffle({random: function(){ return srand.random(); }});
-    var t1 = new gameTable(uuid.v4(), 'Holdem #1', cardDeck);
-    var holdemGame = new holdem(t1);
-    var playerCount = randomIntFromInterval(2,(namePool.length-1)-0);
+    var gameTable = new gameTable(uuid.v4(), 'Holdem #1', cardDeck); // a table needs a unique ID (for session purposes), a name and a deck of cards
+    var holdemGame = new holdem(gameTable); // create and instance of a game and give it a reference to the table to which it is being assigned
+    var playerCount = randomIntFromInterval(2,(namePool.length-1)-0); // simulate 2 to x players
 
-    t1.cardGame = holdemGame;
-    holdemGame.ID = uuid.v4();
+    gameTable.cardGame = holdemGame;  // Texas Holdem is the main game - but the architecture should allow for other game types to be assigned to a table
+    holdemGame.ID = uuid.v4(); // Assign a unique identified to this game, which will essentially be for auditing purposes
 
     var playerSet=[];
     for (var index=0; index<playerCount; index++) {
@@ -48,8 +50,8 @@ function init() {
         playerSet.push(new player(namePool[nameIndex]));
         namePool.splice(nameIndex,1);
     }
-    t1.players = playerSet;
-    t1.cardGame.startGame();
+    gameTable.players = playerSet;
+    gameTable.cardGame.startGame(); // the GAME instance controls the game activity at a table.
 }
 
 function randomIntFromInterval(min,max)
