@@ -1,7 +1,6 @@
 /**
  * Created by mattyglover on 16/04/2017.
  */
-
 'use strict';
 
 var Hand = require('pokersolver').Hand;
